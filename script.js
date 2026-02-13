@@ -2,6 +2,40 @@
    PREMIUM BIRTHDAY WEBSITE — ANIMATION ENGINE
    ============================================================ */
 
+// ---- 0. ENTRY SPLASH — Start Music on Tap ----
+const entrySplash = document.getElementById('entry-splash');
+const enterBtn = document.getElementById('enter-btn');
+const bgMusic = document.getElementById('bg-music');
+
+function enterSite() {
+    // Start music (direct tap = mobile browsers allow it)
+    if (bgMusic) {
+        bgMusic.volume = 0.5;
+        bgMusic.play().catch(() => { });
+    }
+
+    // Mark audio as playing
+    const ab = document.getElementById('audio-btn');
+    if (ab) ab.classList.add('playing');
+
+    // Fade out splash
+    if (entrySplash) entrySplash.classList.add('hidden');
+
+    // Show preloader, then hide it after delay
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        preloader.style.display = 'flex';
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            setTimeout(() => { preloader.style.display = 'none'; }, 600);
+        }, 1500);
+    }
+}
+
+if (enterBtn) enterBtn.addEventListener('click', enterSite);
+// Also allow tapping anywhere on the splash
+if (entrySplash) entrySplash.addEventListener('click', enterSite);
+
 // ---- 1. SMOOTH SCROLL (Lenis) ----
 const lenis = new Lenis({
     duration: 1.6,

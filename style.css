@@ -17,6 +17,109 @@
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
     --font-script: 'Great Vibes', cursive;
+    --font-accent: 'Great Vibes', cursive;
+}
+
+/* ============================================================
+   ENTRY SPLASH — Tap to Start (Mobile Audio Fix)
+   ============================================================ */
+#entry-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: radial-gradient(ellipse at center, #0e1128 0%, #06070e 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#entry-splash.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    text-align: center;
+    animation: splashFloat 3s ease-in-out infinite;
+}
+
+@keyframes splashFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.splash-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    animation: splashPulse 2s ease-in-out infinite;
+}
+
+@keyframes splashPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.splash-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    background: linear-gradient(135deg, #fff, var(--accent-gold));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.splash-sub {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.splash-btn {
+    padding: 1rem 3rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--bg-deep);
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+    animation: btnGlow 2s ease-in-out infinite alternate;
+    transition: transform 0.3s;
+}
+
+.splash-btn:hover {
+    transform: scale(1.05);
+}
+
+@keyframes btnGlow {
+    0% {
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    }
+
+    100% {
+        box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+    }
 }
 
 /* ---- RESET & BASE ---- */
@@ -1151,7 +1254,8 @@ body {
    CELEBRATION SECTION
    ============================================================ */
 .celebration-section {
-    min-height: 100vh;
+    min-height: auto;
+    padding: 10vh 0 4vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1288,7 +1392,7 @@ body {
    WISH BOX — SEND TO WHATSAPP
    ============================================================ */
 .wish-box-section {
-    padding: 8vh 8%;
+    padding: 2vh 8% 8vh;
     position: relative;
     z-index: 2;
     display: flex;
