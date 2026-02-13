@@ -40,8 +40,15 @@
     pointer-events: none;
 }
 
+/* Prevent scrolling when splash is active */
+body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
 .splash-content {
     text-align: center;
+    max-width: 90%;
     animation: splashFloat 3s ease-in-out infinite;
 }
 
@@ -1635,6 +1642,20 @@ body {
    ============================================================ */
 @media (max-width: 768px) {
 
+    /* Splash Screen Mobile */
+    .splash-title {
+        font-size: 2rem;
+    }
+
+    .splash-btn {
+        padding: 0.8rem 2.5rem;
+        font-size: 1rem;
+    }
+
+    .splash-icon {
+        font-size: 3rem;
+    }
+
     .cursor-dot,
     .cursor-ring {
         display: none;
@@ -1751,6 +1772,21 @@ body {
 }
 
 @media (max-width: 480px) {
+
+    /* Splash Screen Mobile Small */
+    .splash-title {
+        font-size: 1.5rem;
+    }
+
+    .splash-btn {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .splash-icon {
+        font-size: 2.5rem;
+    }
+
     .carousel-wrapper {
         height: 300px;
     }

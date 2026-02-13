@@ -2,10 +2,28 @@
    PREMIUM BIRTHDAY WEBSITE — ANIMATION ENGINE
    ============================================================ */
 
+// ---- 1. SMOOTH SCROLL (Lenis) ----
+const lenis = new Lenis({
+    duration: 1.6,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smooth: true,
+    mouseMultiplier: 1,
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
 // ---- 0. ENTRY SPLASH — Start Music on Tap ----
 const entrySplash = document.getElementById('entry-splash');
 const enterBtn = document.getElementById('enter-btn');
 const bgMusic = document.getElementById('bg-music');
+
+// Prevent scrolling initially (native + Lenis)
+document.body.classList.add('no-scroll');
+lenis.stop();
 
 function enterSite() {
     // Start music (direct tap = mobile browsers allow it)
@@ -18,8 +36,14 @@ function enterSite() {
     const ab = document.getElementById('audio-btn');
     if (ab) ab.classList.add('playing');
 
-    // Fade out splash
-    if (entrySplash) entrySplash.classList.add('hidden');
+    // Fade out splash and enable scrolling
+    if (entrySplash) {
+        entrySplash.classList.add('hidden');
+        setTimeout(() => {
+            document.body.classList.remove('no-scroll');
+            lenis.start();
+        }, 600); // Wait for transition
+    }
 
     // Show preloader, then hide it after delay
     const preloader = document.getElementById('preloader');
@@ -35,20 +59,6 @@ function enterSite() {
 if (enterBtn) enterBtn.addEventListener('click', enterSite);
 // Also allow tapping anywhere on the splash
 if (entrySplash) entrySplash.addEventListener('click', enterSite);
-
-// ---- 1. SMOOTH SCROLL (Lenis) ----
-const lenis = new Lenis({
-    duration: 1.6,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-    mouseMultiplier: 1,
-});
-
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
 
 // ---- 2. GSAP SETUP ----
 gsap.registerPlugin(ScrollTrigger);
