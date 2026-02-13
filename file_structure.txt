@@ -1,0 +1,23 @@
+birthday-wish/
+│
+├── index.html
+├── css/
+│   ├── main.css
+│   ├── animations.css
+│   └── variables.css
+│
+├── js/
+│   ├── main.js
+│   ├── scroll.js
+│   ├── confetti.js
+│   └── audio.js
+│
+├── assets/
+│   ├── images/
+│   ├── music/
+│   └── fonts/
+│
+└── libs/
+    ├── gsap.min.js
+    ├── ScrollTrigger.min.js
+    └── lenis.min.js
